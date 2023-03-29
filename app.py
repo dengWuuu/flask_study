@@ -2,13 +2,28 @@ from flask import Flask, redirect, url_for, request, render_template
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template("login.html")
 
+
 @app.route('/hello')
-def test():
-    return 'Test'
+def indexHello():
+    # 往模板中传入的数据
+    my_str = 'Hello Word'
+    my_int = 10
+    my_array = [3, 4, 2, 1, 7, 9]
+    my_dict = {
+        'name': 'wdw',
+        'age': 18
+    }
+    return render_template('hello.html',
+                           my_str=my_str,
+                           my_int=my_int,
+                           my_array=my_array,
+                           my_dict=my_dict
+                           )
 
 
 @app.route('/var/<name>')
